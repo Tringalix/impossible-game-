@@ -25,10 +25,11 @@
             margin-bottom: 20px;
         }
 
-        /* ⭐ Pulsante nascosto davvero */
+        /* ⭐ Pulsante completamente invisibile e non cliccabile */
         #hiddenBtn {
-            opacity: 0;
-            pointer-events: none;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
             transition: opacity 0.4s ease;
         }
 
@@ -57,7 +58,7 @@
             to   { box-shadow: 0 0 35px #00ffc8; }
         }
 
-        /* ⭐ DIV TRANSIZIONE */
+        /* ⭐ Transizione glitch */
         #transition {
             position: fixed;
             top: 0;
@@ -95,13 +96,14 @@
     <p>Forse dovresti… passarci sopra.</p>
 
     <script>
-        // ⭐ Mostra il pulsante solo quando il mouse passa nella zona centrale
+        // ⭐ Mostra il pulsante SOLO quando il mouse è vicino al centro
         document.body.addEventListener("mousemove", (e) => {
             const btn = document.getElementById("hiddenBtn");
             const distance = Math.abs(e.clientY - window.innerHeight / 2);
 
             if (distance < 120) {
                 btn.style.opacity = "1";
+                btn.style.visibility = "visible";
                 btn.style.pointerEvents = "auto";
             }
         });
@@ -110,7 +112,6 @@
             startTransition("level5.html");
         }
 
-        // ⭐ Transizione glitch corretta
         function startTransition(nextPage) {
             const t = document.getElementById("transition");
             t.style.display = "block";
