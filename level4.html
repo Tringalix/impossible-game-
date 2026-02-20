@@ -25,16 +25,8 @@
             margin-bottom: 20px;
         }
 
-        /* ⭐ Pulsante completamente invisibile e non cliccabile */
-        #hiddenBtn {
-            opacity: 0 !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-            transition: opacity 0.4s ease;
-        }
-
         /* Pulsante neon */
-        button {
+        .neon-btn {
             padding: 14px 26px;
             font-size: 18px;
             font-weight: bold;
@@ -49,7 +41,7 @@
             margin-top: 20px;
         }
 
-        button:hover {
+        .neon-btn:hover {
             transform: scale(1.08);
         }
 
@@ -58,7 +50,7 @@
             to   { box-shadow: 0 0 35px #00ffc8; }
         }
 
-        /* ⭐ Transizione glitch */
+        /* Transizione glitch */
         #transition {
             position: fixed;
             top: 0;
@@ -91,26 +83,29 @@
         Ma non è invisibile… solo molto timido.
     </p>
 
-    <button id="hiddenBtn" onclick="goNext()">Avanti</button>
+    <!-- Il pulsante NON esiste ancora -->
 
     <p>Forse dovresti… passarci sopra.</p>
 
     <script>
-        // ⭐ Mostra il pulsante SOLO quando il mouse è vicino al centro
+        let created = false;
+
         document.body.addEventListener("mousemove", (e) => {
-            const btn = document.getElementById("hiddenBtn");
+            if (created) return;
+
             const distance = Math.abs(e.clientY - window.innerHeight / 2);
 
             if (distance < 120) {
-                btn.style.opacity = "1";
-                btn.style.visibility = "visible";
-                btn.style.pointerEvents = "auto";
+                created = true;
+
+                const btn = document.createElement("button");
+                btn.textContent = "Avanti";
+                btn.className = "neon-btn";
+                btn.onclick = () => startTransition("level5.html");
+
+                document.body.appendChild(btn);
             }
         });
-
-        function goNext() {
-            startTransition("level5.html");
-        }
 
         function startTransition(nextPage) {
             const t = document.getElementById("transition");
