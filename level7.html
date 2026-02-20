@@ -12,21 +12,38 @@
             text-align: center;
             padding: 40px 20px;
         }
+
+        /* ⭐ Titolo-pulsante neon animato */
         h1 {
             color: #ff4b4b;
-            text-shadow: 0 0 10px #ff4b4b;
+            text-shadow: 0 0 12px #ff4b4b, 0 0 25px #ff4b4b;
             margin-bottom: 20px;
-            cursor: pointer; /* Indizio sottile */
+            cursor: pointer;
+            animation: pulseRed 1.6s infinite alternate;
+            transition: transform 0.2s;
         }
+
+        h1:hover {
+            transform: scale(1.08);
+        }
+
+        @keyframes pulseRed {
+            from { text-shadow: 0 0 12px #ff4b4b; }
+            to   { text-shadow: 0 0 28px #ff4b4b; }
+        }
+
         p {
             color: #cccccc;
             font-size: 18px;
             margin-bottom: 20px;
         }
+
+        /* Input e pulsante disattivati */
         input, button {
-            opacity: 0.3;
-            pointer-events: none; /* Disattivati */
+            opacity: 0.25;
+            pointer-events: none;
         }
+
         .error {
             color: #ff4b4b;
             margin-top: 15px;
@@ -35,7 +52,7 @@
 </head>
 <body>
 
-    <!-- Il titolo è il vero pulsante -->
+    <!-- ⭐ Il titolo è il vero pulsante -->
     <h1 onclick="goNext()">Livello 7</h1>
 
     <p>Errore: il livello non è stato caricato correttamente.</p>
