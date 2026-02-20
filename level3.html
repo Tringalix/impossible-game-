@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Livello 3 – Impossible Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: #050509;
+            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        h1 {
+            color: #00ffc8;
+            text-shadow: 0 0 10px #00ffc8;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #cccccc;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .fake-btn {
+            display: inline-block;
+            padding: 14px 26px;
+            background: #ff4b4b;
+            color: #000;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 0 14px #ff4b4b;
+            cursor: pointer;
+            margin-bottom: 25px;
+        }
+        .fake-btn:hover {
+            background: #ff2a2a;
+        }
+        input {
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: none;
+            margin-right: 8px;
+        }
+        button {
+            padding: 8px 14px;
+            border-radius: 6px;
+            border: none;
+            background: #00ffc8;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #00cfa0;
+        }
+        .error {
+            color: #ff4b4b;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Livello 3</h1>
+
+    <p>Non cliccare il pulsante qui sotto. Davvero, NON farlo.</p>
+
+    <div class="fake-btn" onclick="wrongClick()">NON CLICCARE</div>
+
+    <p>Oppure… forse la risposta è un’altra.</p>
+
+    <input type="text" id="answer" placeholder="Scrivi la risposta...">
+    <button onclick="checkAnswer()">Invia</button>
+
+    <div id="message" class="error"></div>
+
+    <script>
+        function wrongClick() {
+            document.getElementById('message').textContent = "Hai cliccato il pulsante! Non era quello.";
+        }
+
+        function checkAnswer() {
+            const input = document.getElementById('answer').value.trim().toLowerCase();
+            const correct = "non cliccare";
+
+            if (input === correct) {
+                window.location.href = "level4.html";
+            } else {
+                document.getElementById('message').textContent = "Risposta sbagliata. Riprova.";
+            }
+        }
+    </script>
+
+</body>
+</html>
