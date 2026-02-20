@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Livello 9 – Impossible Game</title>
+    <title>Livello 8 – Impossible Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -19,10 +19,30 @@
             margin-bottom: 20px;
         }
 
-        #sequence {
-            font-size: 32px;
-            margin: 20px 0;
-            letter-spacing: 8px;
+        p {
+            color: #cccccc;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Pulsanti di scelta (rossi) */
+        .choice-btn {
+            display: inline-block;
+            padding: 14px 26px;
+            background: #ff4b4b;
+            color: #000;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 0 18px #ff4b4b;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+
+        .choice-btn:hover {
+            background: #ff2a2a;
+            transform: scale(1.08);
         }
 
         input {
@@ -33,7 +53,7 @@
             margin-right: 8px;
         }
 
-        /* ⭐ Pulsante neon animato */
+        /* Pulsante neon animato (verde) */
         button {
             padding: 14px 26px;
             font-size: 18px;
@@ -61,39 +81,72 @@
             color: #ff4b4b;
             margin-top: 15px;
         }
+
+        /* ⭐ TRANSIZIONE GLITCH NEON */
+        .transition-glitch {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00ffc8;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            animation: glitch 0.45s steps(3) forwards;
+        }
+
+        @keyframes glitch {
+            0% { opacity: 0; transform: translateX(0); }
+            20% { opacity: 1; transform: translateX(-10px); }
+            40% { opacity: 0.6; transform: translateX(10px); }
+            60% { opacity: 1; transform: translateX(-5px); }
+            100% { opacity: 0; transform: translateX(0); }
+        }
     </style>
 </head>
 <body>
 
-    <h1>Livello 9</h1>
+    <!-- ⭐ DIV TRANSIZIONE -->
+    <div id="transition" class="transition-glitch" style="display:none;"></div>
 
-    <p>Memorizza la sequenza. Hai solo 3 secondi.</p>
+    <h1>Livello 8</h1>
 
-    <div id="sequence">▲ ● ★ ◆ ● ▲ ★ ◆ ●</div>
+    <p>Scegli la risposta corretta.</p>
 
-    <input type="text" id="answer" placeholder="Scrivi la sequenza...">
+    <div class="choice-btn" onclick="wrong()">SI</div>
+    <div class="choice-btn" onclick="wrong()">NO</div>
+
+    <p>Oppure… forse non devi scegliere affatto.</p>
+
+    <input type="text" id="answer" placeholder="Scrivi la risposta...">
     <button onclick="checkAnswer()">Invia</button>
 
     <div id="message" class="error"></div>
 
     <script>
-        // Nasconde la sequenza dopo 3 secondi
-        setTimeout(() => {
-            document.getElementById('sequence').style.visibility = "hidden";
-        }, 3000);
+        function wrong() {
+            document.getElementById('message').textContent = "Scelta sbagliata.";
+        }
 
         function checkAnswer() {
-            const input = document.getElementById('answer').value
-                .replace(/\s+/g, '') // rimuove spazi
-                .trim();
-
-            const correct = "▲●★◆●▲★◆●";
+            const input = document.getElementById('answer').value.trim().toLowerCase();
+            const correct = "nessuna";
 
             if (input === correct) {
-                window.location.href = "level10.html";
+                startTransition("level9.html");
             } else {
-                document.getElementById('message').textContent = "Sequenza errata. Riprova.";
+                document.getElementById('message').textContent = "Risposta sbagliata. Riprova.";
             }
+        }
+
+        /* ⭐ FUNZIONE TRANSIZIONE */
+        function startTransition(nextPage) {
+            const t = document.getElementById("transition");
+            t.style.display = "block";
+            setTimeout(() => {
+                window.location.href = nextPage;
+            }, 400);
         }
     </script>
 
