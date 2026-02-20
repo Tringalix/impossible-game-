@@ -13,7 +13,7 @@
             padding: 40px 20px;
         }
 
-        /* ⭐ Titolo-pulsante neon animato */
+        /* Titolo-pulsante neon animato */
         h1 {
             color: #ff4b4b;
             text-shadow: 0 0 12px #ff4b4b, 0 0 25px #ff4b4b;
@@ -48,11 +48,36 @@
             color: #ff4b4b;
             margin-top: 15px;
         }
+
+        /* ⭐ TRANSIZIONE GLITCH NEON */
+        .transition-glitch {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00ffc8;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            animation: glitch 0.45s steps(3) forwards;
+        }
+
+        @keyframes glitch {
+            0% { opacity: 0; transform: translateX(0); }
+            20% { opacity: 1; transform: translateX(-10px); }
+            40% { opacity: 0.6; transform: translateX(10px); }
+            60% { opacity: 1; transform: translateX(-5px); }
+            100% { opacity: 0; transform: translateX(0); }
+        }
     </style>
 </head>
 <body>
 
-    <!-- ⭐ Il titolo è il vero pulsante -->
+    <!-- ⭐ DIV TRANSIZIONE -->
+    <div id="transition" class="transition-glitch" style="display:none;"></div>
+
+    <!-- Il titolo è il vero pulsante -->
     <h1 onclick="goNext()">Livello 7</h1>
 
     <p>Errore: il livello non è stato caricato correttamente.</p>
@@ -65,7 +90,16 @@
 
     <script>
         function goNext() {
-            window.location.href = "level8.html";
+            startTransition("level8.html");
+        }
+
+        /* ⭐ FUNZIONE TRANSIZIONE */
+        function startTransition(nextPage) {
+            const t = document.getElementById("transition");
+            t.style.display = "block";
+            setTimeout(() => {
+                window.location.href = nextPage;
+            }, 400);
         }
     </script>
 
