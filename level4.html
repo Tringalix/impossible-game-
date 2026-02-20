@@ -25,19 +25,19 @@
             margin-bottom: 20px;
         }
 
-        /* ⭐ Bagliore ultra-preciso */
+        /* Bagliore super breve e non prevedibile */
         #glowZone {
             position: fixed;
             top: 50%;
             left: 50%;
-            width: 80px;
-            height: 20px;
+            width: 40px;
+            height: 10px;
             transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(0,255,200,0.4), rgba(0,255,200,0));
+            background: radial-gradient(circle, rgba(0,255,200,0.5), rgba(0,255,200,0));
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.15s ease;
-            filter: blur(12px);
+            transition: opacity 0.1s ease;
+            filter: blur(10px);
             z-index: 1;
         }
 
@@ -59,16 +59,12 @@
             z-index: 2;
         }
 
-        .neon-btn:hover {
-            transform: scale(1.08);
-        }
-
         @keyframes pulse {
             from { box-shadow: 0 0 15px #00ffc8; }
             to   { box-shadow: 0 0 35px #00ffc8; }
         }
 
-        /* ⭐ Transizione glitch */
+        /* Transizione glitch */
         #transition {
             position: fixed;
             top: 0;
@@ -92,10 +88,7 @@
 </head>
 <body>
 
-    <!-- Bagliore -->
     <div id="glowZone"></div>
-
-    <!-- Transizione -->
     <div id="transition" style="display:none;"></div>
 
     <h1>Livello 4</h1>
@@ -109,28 +102,35 @@
 
     <script>
         let created = false;
+        let timer = null;
 
         document.body.addEventListener("mousemove", (e) => {
             const glow = document.getElementById("glowZone");
             const distance = Math.abs(e.clientY - window.innerHeight / 2);
 
-            /* ⭐ Bagliore SOLO quando sei quasi perfetto */
-            if (distance < 25) {
+            /* ⭐ Bagliore solo quando SEI nella zona giusta */
+            if (distance < 10) {
                 glow.style.opacity = "1";
-            } else {
-                glow.style.opacity = "0";
+                setTimeout(() => glow.style.opacity = "0", 150);
             }
 
-            /* ⭐ Pulsante appare solo nella zona perfetta */
-            if (!created && distance < 15) {
-                created = true;
-
-                const btn = document.createElement("button");
-                btn.textContent = "Avanti";
-                btn.className = "neon-btn";
-                btn.onclick = () => startTransition("level5.html");
-
-                document.body.appendChild(btn);
+            /* ⭐ Pulsante appare solo se resti nella zona 0.5s */
+            if (!created && distance < 10) {
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        if (!created) {
+                            created = true;
+                            const btn = document.createElement("button");
+                            btn.textContent = "Avanti";
+                            btn.className = "neon-btn";
+                            btn.onclick = () => startTransition("level5.html");
+                            document.body.appendChild(btn);
+                        }
+                    }, 500);
+                }
+            } else {
+                clearTimeout(timer);
+                timer = null;
             }
         });
 
