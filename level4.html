@@ -25,6 +25,22 @@
             margin-bottom: 20px;
         }
 
+        /* ⭐ Bagliore neon che indica la zona giusta */
+        #glowZone {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 260px;
+            height: 120px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(0,255,200,0.25), rgba(0,255,200,0));
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            filter: blur(20px);
+            z-index: 1;
+        }
+
         /* Pulsante neon */
         .neon-btn {
             padding: 14px 26px;
@@ -39,6 +55,8 @@
             box-shadow: 0 0 15px #00ffc8;
             transition: transform 0.2s;
             margin-top: 20px;
+            position: relative;
+            z-index: 2;
         }
 
         .neon-btn:hover {
@@ -50,7 +68,7 @@
             to   { box-shadow: 0 0 35px #00ffc8; }
         }
 
-        /* Transizione glitch */
+        /* ⭐ Transizione glitch */
         #transition {
             position: fixed;
             top: 0;
@@ -74,6 +92,10 @@
 </head>
 <body>
 
+    <!-- ⭐ Bagliore -->
+    <div id="glowZone"></div>
+
+    <!-- ⭐ Transizione -->
     <div id="transition" style="display:none;"></div>
 
     <h1>Livello 4</h1>
@@ -83,19 +105,24 @@
         Ma non è invisibile… solo molto timido.
     </p>
 
-    <!-- Il pulsante NON esiste ancora -->
-
     <p>Forse dovresti… passarci sopra.</p>
 
     <script>
         let created = false;
 
         document.body.addEventListener("mousemove", (e) => {
-            if (created) return;
-
+            const glow = document.getElementById("glowZone");
             const distance = Math.abs(e.clientY - window.innerHeight / 2);
 
-            if (distance < 120) {
+            /* ⭐ Bagliore quando sei vicino */
+            if (distance < 150) {
+                glow.style.opacity = "1";
+            } else {
+                glow.style.opacity = "0";
+            }
+
+            /* ⭐ Crea il pulsante solo quando sei nella zona precisa */
+            if (!created && distance < 120) {
                 created = true;
 
                 const btn = document.createElement("button");
