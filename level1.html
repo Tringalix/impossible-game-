@@ -32,7 +32,7 @@
             margin-right: 8px;
         }
 
-        /* ⭐ NUOVO STILE PULSANTI NEON ANIMATI */
+        /* Pulsante neon animato */
         button {
             padding: 14px 26px;
             font-size: 18px;
@@ -60,12 +60,38 @@
             color: #ff4b4b;
             margin-top: 15px;
         }
+
+        /* ⭐ TRANSIZIONE GLITCH NEON */
+        .transition-glitch {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00ffc8;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            animation: glitch 0.45s steps(3) forwards;
+        }
+
+        @keyframes glitch {
+            0% { opacity: 0; transform: translateX(0); }
+            20% { opacity: 1; transform: translateX(-10px); }
+            40% { opacity: 0.6; transform: translateX(10px); }
+            60% { opacity: 1; transform: translateX(-5px); }
+            100% { opacity: 0; transform: translateX(0); }
+        }
     </style>
 </head>
 <body>
 
+    <!-- ⭐ DIV TRANSIZIONE -->
+    <div id="transition" class="transition-glitch" style="display:none;"></div>
+
     <h1>Livello 1</h1>
-    <p>Indovinello: “Sono sempre davanti a te, ma non puoi mai raggiungermi. Chi sono?”</p>
+
+    <p>Benvenuto nell'Impossible Game.<br>Per iniziare, scrivi la parola <strong>inizio</strong>.</p>
 
     <input type="text" id="answer" placeholder="Scrivi la risposta...">
     <button onclick="checkAnswer()">Invia</button>
@@ -75,13 +101,22 @@
     <script>
         function checkAnswer() {
             const input = document.getElementById('answer').value.trim().toLowerCase();
-            const correct = "futuro";
+            const correct = "inizio";
 
             if (input === correct) {
-                window.location.href = "level2.html";
+                startTransition("level2.html");
             } else {
                 document.getElementById('message').textContent = "Risposta sbagliata. Riprova.";
             }
+        }
+
+        /* ⭐ FUNZIONE TRANSIZIONE */
+        function startTransition(nextPage) {
+            const t = document.getElementById("transition");
+            t.style.display = "block";
+            setTimeout(() => {
+                window.location.href = nextPage;
+            }, 400);
         }
     </script>
 
