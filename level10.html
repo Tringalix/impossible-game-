@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Livello 10 – Impossible Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: #000000;
+            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        h1 {
+            color: #00ffc8;
+            text-shadow: 0 0 15px #00ffc8;
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        p {
+            color: #cccccc;
+            font-size: 20px;
+            margin-bottom: 30px;
+            animation: fadeIn 3s ease-in-out;
+        }
+        input {
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: none;
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 16px;
+            border-radius: 6px;
+            border: none;
+            background: #00ffc8;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #00cfa0;
+        }
+        .error {
+            color: #ff4b4b;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Livello 10</h1>
+
+    <p>Hai superato 9 prove impossibili.<br>
+    Ora dimostra di conoscere te stesso.</p>
+
+    <p><strong>Qual è l’unica cosa che puoi trovare solo alla fine…<br>
+    ma che esisteva dall’inizio?</strong></p>
+
+    <input type="text" id="answer" placeholder="Scrivi la risposta...">
+    <button onclick="checkAnswer()">Invia</button>
+
+    <div id="message" class="error"></div>
+
+    <script>
+        function checkAnswer() {
+            const input = document.getElementById('answer').value.trim().toLowerCase();
+            const correct = "inizio";
+
+            if (input === correct) {
+                window.location.href = "prize.html";
+            } else {
+                document.getElementById('message').textContent = "Non è questa la risposta. Rifletti ancora.";
+            }
+        }
+    </script>
+
+</body>
+</html>
