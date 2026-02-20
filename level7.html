@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Livello 7 – Impossible Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: #050509;
+            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        h1 {
+            color: #ff4b4b;
+            text-shadow: 0 0 10px #ff4b4b;
+            margin-bottom: 20px;
+            cursor: pointer; /* Indizio sottile */
+        }
+        p {
+            color: #cccccc;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        input, button {
+            opacity: 0.3;
+            pointer-events: none; /* Disattivati */
+        }
+        .error {
+            color: #ff4b4b;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Il titolo è il vero pulsante -->
+    <h1 onclick="goNext()">Livello 7</h1>
+
+    <p>Errore: il livello non è stato caricato correttamente.</p>
+    <p>Ricarica la pagina o riprova più tardi.</p>
+
+    <input type="text" placeholder="Campo non disponibile">
+    <button>Invia</button>
+
+    <div class="error">Funzionalità non disponibile.</div>
+
+    <script>
+        function goNext() {
+            window.location.href = "level8.html";
+        }
+    </script>
+
+</body>
+</html>
