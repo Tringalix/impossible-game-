@@ -25,19 +25,19 @@
             margin-bottom: 20px;
         }
 
-        /* ⭐ Bagliore neon che indica la zona giusta */
+        /* ⭐ Bagliore ultra-preciso */
         #glowZone {
             position: fixed;
             top: 50%;
             left: 50%;
-            width: 260px;
-            height: 120px;
+            width: 80px;
+            height: 20px;
             transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(0,255,200,0.25), rgba(0,255,200,0));
+            background: radial-gradient(circle, rgba(0,255,200,0.4), rgba(0,255,200,0));
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
-            filter: blur(20px);
+            transition: opacity 0.15s ease;
+            filter: blur(12px);
             z-index: 1;
         }
 
@@ -92,10 +92,10 @@
 </head>
 <body>
 
-    <!-- ⭐ Bagliore -->
+    <!-- Bagliore -->
     <div id="glowZone"></div>
 
-    <!-- ⭐ Transizione -->
+    <!-- Transizione -->
     <div id="transition" style="display:none;"></div>
 
     <h1>Livello 4</h1>
@@ -114,15 +114,15 @@
             const glow = document.getElementById("glowZone");
             const distance = Math.abs(e.clientY - window.innerHeight / 2);
 
-            /* ⭐ Bagliore quando sei vicino */
-            if (distance < 150) {
+            /* ⭐ Bagliore SOLO quando sei quasi perfetto */
+            if (distance < 25) {
                 glow.style.opacity = "1";
             } else {
                 glow.style.opacity = "0";
             }
 
-            /* ⭐ Crea il pulsante solo quando sei nella zona precisa */
-            if (!created && distance < 120) {
+            /* ⭐ Pulsante appare solo nella zona perfetta */
+            if (!created && distance < 15) {
                 created = true;
 
                 const btn = document.createElement("button");
