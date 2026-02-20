@@ -29,4 +29,45 @@
             margin-right: 8px;
         }
         button {
-            padding: 8px 14
+            padding: 8px 14px;
+            border-radius: 6px;
+            border: none;
+            background: #00ffc8;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #00cfa0;
+        }
+        .error {
+            color: #ff4b4b;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Livello 1</h1>
+    <p>Indovinello: “Sono sempre davanti a te, ma non puoi mai raggiungermi. Chi sono?”</p>
+
+    <input type="text" id="answer" placeholder="Scrivi la risposta...">
+    <button onclick="checkAnswer()">Invia</button>
+
+    <div id="message" class="error"></div>
+
+    <script>
+        function checkAnswer() {
+            const input = document.getElementById('answer').value.trim().toLowerCase();
+            const correct = "futuro";
+
+            if (input === correct) {
+                window.location.href = "level2.html";
+            } else {
+                document.getElementById('message').textContent = "Risposta sbagliata. Riprova.";
+            }
+        }
+    </script>
+
+</body>
+</html>
