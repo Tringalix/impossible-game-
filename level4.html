@@ -25,7 +25,7 @@
             margin-bottom: 20px;
         }
 
-        /* Pulsante nascosto */
+        /* ⭐ Pulsante nascosto davvero */
         #hiddenBtn {
             opacity: 0;
             pointer-events: none;
@@ -70,7 +70,6 @@
             z-index: 9999;
         }
 
-        /* Animazione glitch */
         @keyframes glitch {
             0% { opacity: 0; transform: translateX(0); }
             20% { opacity: 1; transform: translateX(-10px); }
@@ -82,7 +81,6 @@
 </head>
 <body>
 
-    <!-- ⭐ DIV TRANSIZIONE -->
     <div id="transition" style="display:none;"></div>
 
     <h1>Livello 4</h1>
@@ -97,7 +95,7 @@
     <p>Forse dovresti… passarci sopra.</p>
 
     <script>
-        // Mostra il pulsante quando il mouse passa nella zona centrale
+        // ⭐ Mostra il pulsante solo quando il mouse passa nella zona centrale
         document.body.addEventListener("mousemove", (e) => {
             const btn = document.getElementById("hiddenBtn");
             const distance = Math.abs(e.clientY - window.innerHeight / 2);
@@ -112,7 +110,7 @@
             startTransition("level5.html");
         }
 
-        /* ⭐ FUNZIONE TRANSIZIONE CORRETTA */
+        // ⭐ Transizione glitch corretta
         function startTransition(nextPage) {
             const t = document.getElementById("transition");
             t.style.display = "block";
@@ -120,7 +118,7 @@
 
             setTimeout(() => {
                 window.location.href = nextPage;
-                t.style.animation = ""; // reset per farla ripartire al prossimo livello
+                t.style.animation = "";
             }, 400);
         }
     </script>
