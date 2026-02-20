@@ -40,6 +40,31 @@
             animation: glow 2.5s infinite alternate ease-in-out, fadeIn 4s ease-out;
         }
 
+        /* ⭐ Pulsante neon finale */
+        .restart-btn {
+            margin-top: 50px;
+            padding: 16px 32px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            background: #00ffc8;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 0 18px #00ffc8;
+            animation: pulse 1.6s infinite alternate;
+            transition: transform 0.2s;
+        }
+
+        .restart-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            from { box-shadow: 0 0 18px #00ffc8; }
+            to   { box-shadow: 0 0 38px #00ffc8; }
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -73,6 +98,11 @@
     <p>Solo una mente determinata, creativa e coraggiosa arriva fin qui.</p>
 
     <div class="badge">🏆 Vincitore Ufficiale dell'Impossible Game 🏆</div>
+
+    <!-- ⭐ Pulsante finale -->
+    <button class="restart-btn" onclick="window.location.href='index.html'">
+        Gioca di nuovo
+    </button>
 
     <script>
         // Genera particelle luminose per l'effetto epico
