@@ -25,13 +25,14 @@
             margin-bottom: 20px;
         }
 
-        /* Pulsante invisibile */
+        /* Pulsante nascosto */
         #hiddenBtn {
             opacity: 0;
             pointer-events: none;
+            transition: opacity 0.4s ease;
         }
 
-        /* Pulsante neon animato */
+        /* Pulsante neon */
         button {
             padding: 14px 26px;
             font-size: 18px;
@@ -56,13 +57,8 @@
             to   { box-shadow: 0 0 35px #00ffc8; }
         }
 
-        .error {
-            color: #ff4b4b;
-            margin-top: 15px;
-        }
-
-        /* ⭐ TRANSIZIONE GLITCH NEON */
-        .transition-glitch {
+        /* ⭐ DIV TRANSIZIONE */
+        #transition {
             position: fixed;
             top: 0;
             left: 0;
@@ -72,9 +68,9 @@
             opacity: 0;
             pointer-events: none;
             z-index: 9999;
-            animation: glitch 0.45s steps(3) forwards;
         }
 
+        /* Animazione glitch */
         @keyframes glitch {
             0% { opacity: 0; transform: translateX(0); }
             20% { opacity: 1; transform: translateX(-10px); }
@@ -87,7 +83,7 @@
 <body>
 
     <!-- ⭐ DIV TRANSIZIONE -->
-    <div id="transition" class="transition-glitch" style="display:none;"></div>
+    <div id="transition" style="display:none;"></div>
 
     <h1>Livello 4</h1>
 
@@ -100,10 +96,8 @@
 
     <p>Forse dovresti… passarci sopra.</p>
 
-    <div id="message" class="error"></div>
-
     <script>
-        // Mostra il pulsante quando il mouse passa nella zona
+        // Mostra il pulsante quando il mouse passa nella zona centrale
         document.body.addEventListener("mousemove", (e) => {
             const btn = document.getElementById("hiddenBtn");
             const distance = Math.abs(e.clientY - window.innerHeight / 2);
@@ -118,12 +112,15 @@
             startTransition("level5.html");
         }
 
-        /* ⭐ FUNZIONE TRANSIZIONE */
+        /* ⭐ FUNZIONE TRANSIZIONE CORRETTA */
         function startTransition(nextPage) {
             const t = document.getElementById("transition");
             t.style.display = "block";
+            t.style.animation = "glitch 0.45s steps(3) forwards";
+
             setTimeout(() => {
                 window.location.href = nextPage;
+                t.style.animation = ""; // reset per farla ripartire al prossimo livello
             }, 400);
         }
     </script>
